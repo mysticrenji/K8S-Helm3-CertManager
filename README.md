@@ -17,5 +17,5 @@ helm install cert-manager jetstack/cert-manager -n cert-manager --version v0.14.
 kubectl delete mutatingwebhookconfiguration.admissionregistration.k8s.io cert-manager-webhook </br>
 kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io cert-manager-webhook </br>
 
-namespace="not-cert-manager"
+namespace="not-cert-manager" </br>
 curl -s -L "https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml" 2>&1 | sed -e "s/namespace: cert-manager/namespace: ${namespace}/" -e "s/cert-manager.io\/inject-ca-from-secret: cert-manager\/cert-manager-webhook-tls/cert-manager.io\/inject-ca-from-secret: ${namespace}\/${namespace}-cert-manager-webhook-tls/" |  kubectl apply --validate=false -f -
