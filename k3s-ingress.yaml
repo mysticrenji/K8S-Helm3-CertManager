@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-bootcamp
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    certmanager.k8s.io/issuer: "letsencrypt-prod"
+    certmanager.k8s.io/acme-challenge-type: http01
+
+spec:
+  tls:
+  - hosts:
+    # Change this to your own hostname
+    - raspimaster.local
+    secretName: bootcamp-k3s-example-org-tls
+  rules:
+  # Change this to your own hostname
+  - host: raspimaster.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: k8s-bootcamp
+          servicePort: http
