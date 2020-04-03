@@ -1,4 +1,4 @@
-# K8S-Helm3-CertManager
+# K3S-Helm3-CertManager
 
 ## K3s Installation on the device - Server -
 curl -sLS https://get.k3s.io | sh - </br>
