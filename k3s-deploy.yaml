@@ -1,18 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-bootcamp
+  name: k3s-simple-website
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-bootcamp
+      app: k3s-simple-website
   template:
     metadata:
       labels:
-        app: k8s-bootcamp
+        app: k3s-simple-website
     spec:
       containers:
-      - name: k8s-bootcamp
-        image: mysticrenji/k3s-cluster-sample
+      - name: k3s-simple-website
+        image: hashicorp/http-echo
+        args:
+        - "-text=banana"
